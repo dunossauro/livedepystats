@@ -1,5 +1,7 @@
-from flask import Flask, request
-from .models import configure_db, Event
+from flask import Flask
+from .models import configure_db
+from .serializers import configure_serializer
+from .api import api
 
 
 def create_app():
@@ -8,22 +10,7 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     configure_db(app)
+    configure_serializer(app)
 
-    @app.route('/event', methods=['POST'])
-    def event():
-        response_template = 'Evento {} na plataforma {} foi cadastrado'
-
-        event = Event(
-            event=request.json['event'],
-            platform=request.json['platform'],
-        )
-
-        app.db.session.add(event)
-        app.db.session.commit()
-
-        return response_template.format(
-            event.event,
-            event.platform,
-        ), 201
-
+    app.register_blueprint(api)
     return app

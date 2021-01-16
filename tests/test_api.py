@@ -2,12 +2,10 @@ from pytest import mark
 from flask import url_for
 from app.models import Event
 
-RESPONSE_DATA_TEMPLATE = 'Evento {} na plataforma {} foi cadastrado'
-
 
 def test_event_post_should_response_201(client):
     response = client.post(
-        url_for('event'), json={'event': 'cha', 'platform': 'twitch'}
+        url_for('api.event'), json={'event': 'cha', 'platform': 'twitch'}
     )
 
     assert response.status_code == 201
@@ -24,18 +22,28 @@ def test_event_post_should_response_201(client):
 def test_event_post_should_return_event_name(event, platform, client):
     event_json = {'event': event, 'platform': platform}
 
-    response = client.post(url_for('event'), json=event_json)
+    response = client.post(url_for('api.event'), json=event_json).json
+    assert response['event'] == event_json['event']
 
-    expected = RESPONSE_DATA_TEMPLATE.format(
-        event_json['event'], event_json['platform']
-    )
 
-    assert expected == response.data.decode()
+@mark.parametrize(
+    'event,platform', [
+        ('cha', 'youtube'),
+        ('zoom', 'youtube'),
+        ('cigarrinho', 'twitch'),
+        ('gritinho', 'twitch')
+    ]
+)
+def test_event_post_should_return_event_platform(event, platform, client):
+    event_json = {'event': event, 'platform': platform}
+
+    response = client.post(url_for('api.event'), json=event_json).json
+    assert response['platform'] == event_json['platform']
 
 
 def test_event_should_register_database_event_row(client, app):
     client.post(
-        url_for('event'),
+        url_for('api.event'),
         json={'event': 'cha', 'platform': 'twitch'}
     )
 
