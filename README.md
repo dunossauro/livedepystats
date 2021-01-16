@@ -7,7 +7,7 @@ A aplicação é divida entre back e mobile. O backend será feito em flask e ap
 
 ## TODO (v1.0) - WEB
 - [x] Rota para receber eventos
-- [ ] Modelo do banco de dados
+- [x] Modelo do banco de dados
 - [ ] Serializer
 - [ ] WSGI
 - [ ] Gitlab-CI
