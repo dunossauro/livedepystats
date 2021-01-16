@@ -12,6 +12,7 @@ class Event(db.Model):
     def __repr__(self):
         return f'Event(id={self.id}, event="{self.event}", platform="{self.platform}", created=datetime({self.created}))'  # NOQA
 
+
 def configure_db(app):
     db.init_app(app)
     app.db = db
