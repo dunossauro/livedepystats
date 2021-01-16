@@ -24,3 +24,11 @@ def test_create_app_should_return_a_flask_app():
       uma instancia de Flask.
     """
     assert isinstance(create_app(), Flask)
+
+
+def test_sqlalchemy_configuration_should_be_defined(app):
+    """
+    Dado que exista a aplicação
+    Então 'SQLALCHEMY_DATABASE_URI' deve estar na configuração
+    """
+    assert 'SQLALCHEMY_DATABASE_URI' in app.config
