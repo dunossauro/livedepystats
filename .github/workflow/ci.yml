@@ -1,0 +1,40 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+
+  testes_unitarios:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+      - name: Python 3.9
+        uses: actions/setup-python@v1
+	with:
+	  python-version: 3.9
+
+      - name: Install Poetry
+        uses: dschep/install-poetry-action@v1.2
+
+      - name: Cache Poetry
+        uses: actions/cache@v1
+	id: cache
+	with:
+	  path: ~/.virtualenvs
+	  key: poetry-${{ hashFiles('**poetry.lock')}}
+	  restore-keys: poetry-${{ hashFiles('**poetry.lock')}}
+
+       - name: Poetry actions config
+         run: |
+	   poetry config virtualenvs.create false --local
+	   poetry config virtualenvs.path ~/.virtualenvs
+
+       - name: Install packages
+         run: poetry install
+
+       - name: Pytest
+         run: poetry run pytest --cov=app
