@@ -9,7 +9,7 @@ A aplicação é divida entre back e mobile. O backend será feito em flask e ap
 - [x] Rota para receber eventos
 - [x] Modelo do banco de dados
 - [x] Serializer
-- [ ] Migration
+- [x] Migration
 - [-] WSGI (Gunicorn)
   - [x] supervisor
   - [x] Procfile

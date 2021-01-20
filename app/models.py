@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from datetime import datetime
 db = SQLAlchemy()
 
@@ -16,3 +17,4 @@ class Event(db.Model):
 def configure_db(app):
     db.init_app(app)
     app.db = db
+    Migrate(app, db)
