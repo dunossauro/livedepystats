@@ -29,13 +29,13 @@ jobs:
           restore-keys: |
             poetry-${{ hashFiles('**poetry.lock') }}
 
-       - name: Poetry actions config
-         run: |
-           poetry config virtualenvs.create false --local
-           poetry config virtualenvs.path ~/.virtualenvs
+      - name: Poetry actions config
+        run: |
+          poetry config virtualenvs.create false --local
+          poetry config virtualenvs.path ~/.virtualenvs
 
-       - name: Install packages
-         run: poetry install
+      - name: Install packages
+        run: poetry install
 
-       - name: Pytest
-         run: poetry run pytest --cov=app
+      - name: Pytest
+        run: poetry run pytest --cov=app
