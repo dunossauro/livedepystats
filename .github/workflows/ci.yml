@@ -43,5 +43,5 @@ jobs:
       - name: coverage xml
         run: poetry run pytest --cov app --cov-report xml tests
 
-- name: Send code cov
+      - name: Send code cov
         uses: codecov/codecov-action@v1
