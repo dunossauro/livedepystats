@@ -20,6 +20,7 @@ A aplicação é divida entre back e mobile. O backend será feito em flask e ap
   - [ ] Custom handlers
 - [x] Coverage
 - [x] github Actions?
+- [ ] Postgres
 - [ ] Deploy no Heroku
 
 ### Rodar projeto web
