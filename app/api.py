@@ -12,4 +12,10 @@ def event():
     current_app.db.session.add(event)
     current_app.db.session.commit()
 
-    return es.dump(event), 201
+    dumped_event = es.dump(event)
+
+    current_app.logger.info(
+        f'Evento recebido {dumped_event}'
+    )
+
+    return dumped_event, 201
