@@ -1,9 +1,10 @@
 name: CI
 
 on: [push, pull_request]
+env:
+  FLASK_ENV: testing
 
 jobs:
-
   testes_unitarios:
     runs-on: ubuntu-latest
 
