@@ -15,12 +15,13 @@ A aplicação é divida entre back e mobile. O backend será feito em flask e ap
 - [x] WSGI (Gunicorn)
   - [x] supervisor
   - [x] Procfile
-- [-] Logs
+- [ ] Logs
   - [x] Gunicorn level
   - [ ] Custom handlers
 - [x] Coverage
-- [x] github Actions?
-- [ ] Postgres
+- [x] Github Actions
+- [x] Arquivo de configuração
+- [x] Postgres
 - [ ] Deploy no Heroku
 
 ### Rodar projeto web
@@ -28,6 +29,13 @@ A aplicação é divida entre back e mobile. O backend será feito em flask e ap
 Projeto em desenvolvimento
 ```bash
 flask run
+```
+
+Preparar banco de dados
+```bash
+docker build . -t banquinho
+
+docker run -v puredebatata:/var/lib/postgresql/data --name banquinho -p 5432:5432 -d banquinho
 ```
 
 WSGI
