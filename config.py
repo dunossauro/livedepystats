@@ -1,6 +1,6 @@
 from os import environ
 
-postgres_uri = 'postgresql://{user}:{pass}@{host}:{port}/{db}'
+postgres_uri = 'postgresql://{user}:{passw}@{host}:{port}/{db}'
 
 
 class Base:
@@ -17,21 +17,21 @@ class Testing(Base):
 class Development(Base):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = postgres_uri.format(
-        'database',
-        'batatinha',
-        'localhost',
-        '5432',
-        'livedepystats'
+        user='database',
+        passw='batatinha',
+        host='localhost',
+        port='5432',
+        db='livedepystats'
     )
 
 
 class Production(Base):
     SQLALCHEMY_DATABASE_URI = postgres_uri.format(
-        'database',
-        'batatinha',
-        'localhost',
-        '5432',
-        'livedepystats'
+        user='database',
+        passw='batatinha',
+        host='localhost',
+        port='5432',
+        db='livedepystats'
     )
 
 
